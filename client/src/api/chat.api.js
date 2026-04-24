@@ -1,0 +1,10 @@
+import api from './axios';
+export const getMyChats = () => api.get('/chats');
+export const accessOrCreateChat = (userId) => api.post('/chats/access', { userId });
+export const createGroupChat = (data) => api.post('/chats/group', data);
+export const getChatById = (id) => api.get(`/chats/${id}`);
+export const renameGroup = (id, name) => api.patch(`/chats/${id}/rename`, { name });
+export const addGroupMembers = (id, userIds) => api.post(`/chats/${id}/members`, { userIds });
+export const removeGroupMember = (id, userId) => api.delete(`/chats/${id}/members`, { data: { userId } });
+export const leaveGroup = (id) => api.post(`/chats/${id}/leave`);
+export const markChatAsRead = (id) => api.post(`/chats/${id}/read`);
