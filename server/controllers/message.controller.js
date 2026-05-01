@@ -110,7 +110,7 @@ export const editMessage = async (req, res, next) => {
     message.editedAt = new Date();
     await message.save();
 
-    io.to(message.chat.toString()).emit('message_edited', { messageId: message._id, content: message.content, editedAt: message.editedAt });
+    io.to(message.chat.toString()).emit('message_edited', { messageId: message._id, chat: message.chat, content: message.content, editedAt: message.editedAt });
     return apiResponse(res, 200, 'Message edited', { message });
   } catch (err) { next(err); }
 };
@@ -151,7 +151,7 @@ export const reactToMessage = async (req, res, next) => {
     }
 
     await message.save();
-    io.to(message.chat.toString()).emit('message_reaction', { messageId: message._id, reactions: message.reactions });
+    io.to(message.chat.toString()).emit('message_reaction', { messageId: message._id, reactions: message.reactions, chatId: message.chat });
     return apiResponse(res, 200, 'Reaction updated', { reactions: message.reactions });
   } catch (err) { next(err); }
 };

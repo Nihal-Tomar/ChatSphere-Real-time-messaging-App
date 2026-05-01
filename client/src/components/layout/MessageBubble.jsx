@@ -56,7 +56,7 @@ export default function MessageBubble({ message, chat, isOwn, showAvatar }) {
 
   // Group reactions by emoji
   const groupedReactions = message.reactions?.reduce((acc, r) => {
-    acc[r.emoji] = (acc[r.emoji] || []);
+    if (!acc[r.emoji]) acc[r.emoji] = [];
     acc[r.emoji].push(r.user);
     return acc;
   }, {}) || {};

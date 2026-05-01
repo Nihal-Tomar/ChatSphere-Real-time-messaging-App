@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import * as chatApi from '../api/chat.api';
 import * as messageApi from '../api/message.api';
-import * as msgApi from '../api/message.api';
 
 export const useChatStore = create((set, get) => ({
   chats: [],

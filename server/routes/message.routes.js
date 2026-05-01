@@ -9,13 +9,14 @@ import { upload, handleUploadError } from '../middleware/upload.middleware.js';
 const router = Router();
 router.use(protect);
 
-router.get('/:chatId', getMessages);
+// Static routes MUST come before parameterised ones
+router.get('/search', searchMessages);
 router.post('/', upload.single('file'), handleUploadError, sendMessage);
+router.get('/:chatId', getMessages);
+router.post('/:chatId/read', markMessagesRead);
 router.patch('/:id', editMessage);
 router.delete('/:id', deleteMessage);
 router.post('/:id/react', reactToMessage);
 router.post('/:id/pin', pinMessage);
-router.get('/search', searchMessages);
-router.post('/:chatId/read', markMessagesRead);
 
 export default router;

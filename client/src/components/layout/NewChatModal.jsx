@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Users, MessageSquare } from 'lucide-react';
 import Modal from '../ui/Modal';
 import Avatar from '../ui/Avatar';
@@ -26,7 +26,7 @@ export default function NewChatModal({ isOpen, onClose, onSelectChat }) {
     } catch { setResults([]); }
   };
 
-  useState(() => { search(); }, [debouncedQ]);
+  useEffect(() => { search(); }, [debouncedQ]);
 
   const startDM = async (u) => {
     setLoading(true);

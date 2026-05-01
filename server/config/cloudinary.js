@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -24,7 +25,6 @@ export const uploadToCloudinary = (buffer, folder = 'chatsphere', resourceType =
         resolve(result);
       }
     );
-    const streamifier = require('streamifier');
     streamifier.createReadStream(buffer).pipe(uploadStream);
   });
 };
