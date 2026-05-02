@@ -96,8 +96,6 @@ userSchema.methods.toPublicProfile = function () {
 
 // Text search index
 userSchema.index({ username: 'text', displayName: 'text', email: 'text' });
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
 
 const User = mongoose.model('User', userSchema);
 export default User;
